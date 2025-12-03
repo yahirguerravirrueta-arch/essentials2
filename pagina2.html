@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝑬𝒔𝒔𝒆𝒏𝒕𝒊𝒂𝒍𝒔 𝑿 𝑻𝑱 — Hoodie</title>
+  <style>
+    :root{
+      --max-width:1200px;
+      --accent:#111;
+      --muted:#666;
+      --gap:24px;
+    }
+    *{box-sizing:border-box}
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #111;
+      -webkit-font-smoothing:antialiased;
+    }
+    header{
+      padding:14px 20px;
+      border-bottom:1px solid #eee;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      font-family: 'Times New Roman', serif;
+      font-style:italic;
+      font-weight:700;
+      letter-spacing:4px;
+      font-size:22px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .brand .logo-large{
+      font-family: 'Zapfino', serif;
+      font-size:30px;
+    }
+    .topbar{font-size:14px;color:var(--muted)}
+
+    main{max-width:var(--max-width);margin:30px auto;padding:0 16px}
+
+    .product{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:var(--gap);
+      align-items:start;
+    }
+
+    .gallery{
+      display:flex;gap:12px;align-items:flex-start;
+    }
+    .thumbs{width:120px;display:flex;flex-direction:column;gap:12px}
+    .thumbs img{width:100%;cursor:pointer;border:1px solid #eee;border-radius:8px}
+    .hero{flex:1;display:flex;justify-content:center;align-items:center}
+    .hero img{max-width:520px;width:100%;border:1px solid #eee;border-radius:10px}
+
+    .info{padding:10px 8px}
+    .title{font-size:20px;font-weight:700;margin:0}
+    .subtitle{color:var(--muted);margin-top:6px}
+    .price{font-size:24px;font-weight:700;margin:18px 0}
+
+    .controls{display:flex;gap:12px;align-items:center}
+    select{padding:10px;border-radius:8px;border:1px solid #ddd}
+    .btn{background:var(--accent);color:#fff;padding:12px 16px;border-radius:8px;border:none;cursor:pointer}
+    .ghost{background:#fff;border:1px solid #ddd;padding:10px 14px;border-radius:8px;cursor:pointer}
+
+    .sections{margin-top:24px;border-top:1px solid #f0f0f0;padding-top:18px}
+    .section{margin-bottom:18px}
+    .muted{color:var(--muted)}
+
+    /* mini cart */
+    .mini-cart{position:fixed;right:18px;bottom:18px;background:#fff;border:1px solid #ddd;padding:12px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.06);min-width:200px}
+    .cart-item{display:flex;gap:10px;align-items:center}
+    .cart-count{background:var(--accent);color:#fff;padding:6px 8px;border-radius:999px;font-weight:700}
+
+    /* responsive */
+    @media (max-width:900px){
+      .product{grid-template-columns:1fr;}
+      .thumbs{order:2;flex-direction:row;width:100%;overflow:auto}
+      .thumbs img{width:90px}
+      .hero img{max-width:420px}
+    }
+
+    @media (max-width:480px){
+      header{padding:10px}
+      .brand{font-size:18px}
+      .hero img{max-width:320px}
+      .price{font-size:20px}
+    }
+
+    /* NEW FARFETCH STYLE MODAL */
+    #sizeModal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+    }
+    .size-panel{
+      background:#fff;
+      width:95%;
+      max-width:700px;
+      max-height:85vh;
+      overflow-y:auto;
+      border-radius:14px;
+      padding:20px;
+      animation:fadeIn .25s ease;
+    }
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(10px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    .size-header{
+      font-size:22px;
+      font-weight:700;
+      border-bottom:1px solid #eee;
+      padding-bottom:12px;
+      margin-bottom:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .close-x{
+      font-size:28px;
+      cursor:pointer;
+    }
+    .size-body h2{
+      margin:0;
+      font-size:18px;
+      font-weight:700;
+    }
+    .size-subtitle{
+      color:#777;
+      margin-bottom:20px;
+    }
+    .size-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-bottom:10px;
+    }
+    .size-table th, .size-table td{
+      border:1px solid #ddd;
+      padding:10px;
+      text-align:center;
+    }
+    .size-table th{
+      background:#fafafa;
+      font-weight:700;
+    }
+
+    footer{margin-top:50px;padding:20px;border-top:1px solid #eee;color:var(--muted);text-align:center}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><span class="logo-large">𝑬𝒔𝒔𝒆𝒏𝒕𝒊𝒂𝒍𝒔</span> <span>𝑿 𝑻𝑱</span></div>
+  <div class="topbar">Entrega estimada: 24 nov - 25 nov</div>
+</header>
+
+<main>
+  <div class="product">
+
+    <div>
+      <div class="gallery">
+        <div class="thumbs" id="thumbs">
+          <img data-src="./images2/pag02.jpg" src="./images2/pag02.jpg" alt="imag1" id="thumb1">
+          <img data-src="./images2/pag2.jpg" src="./images2/pag2.jpg" alt="imag2" id="thumb2">
+        </div>
+        <div class="hero">
+          <img src="./images2/pag2.jpg" alt="Hoodie" id="hero">
+        </div>
+      </div>
+
+      <div class="sections">
+        <div class="section">
+          <h3>DETALLES DEL PRODUCTO</h3>
+          <p class="muted">Gris oscuro, mezcla de algodón, ribete de canalé, efecto melange; logo estampado en pecho y espalda; capucha holgada, hombros caídos, manga larga, dobladillo recto y bolsillo en la parte delantera.</p>
+        </div>
+
+        <div class="section">
+          <h3>Composición</h3>
+          <p>Algodón 80%, Poliéster 20%.</p>
+        </div>
+
+        <div class="section">
+          <h3>Instrucciones de lavado</h3>
+          <p>Lavar a mano.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <h1 class="title">𝐅𝐞𝐚𝐫 𝐨𝐟 𝐠𝐨𝐝 𝐄𝐬𝐬𝐞𝐧𝐭𝐢𝐚𝐥𝐬</h1>
+      <div class="subtitle">hoodie con logo estampado</div>
+
+      <div class="price">$1,899 <div class="muted">Impuestos aduaneros incluidos</div></div>
+
+      <div class="controls">
+        <div>
+          <label for="size">Seleccionar talla</label><br>
+          <select id="size">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+
+        <div style="display:flex;flex-direction:column">
+          <button class="btn" id="addBtn">Añadir a la bolsa</button>
+          <button class="ghost" id="sizeGuide">Guía de tallas</button>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <button class="ghost" id="wish">❤ Lista de deseos</button>
+      </div>
+
+      <div class="sections">
+        <div class="section">
+          <h3>Talla y Ajuste</h3>
+          <p class="muted">Corte oversize. Si dudas entre dos tallas, te recomendamos seleccionar la menor si buscas un ajuste más ceñido.</p>
+        </div>
+
+        <div class="section">
+          <h3>Envíos, devoluciones y vendedores</h3>
+          <p class="muted">Envío estándar 3-5 días hábiles. Devoluciones aceptadas en 30 días.</p>
+        </div>
+
+        <div class="section">
+          <h3>ID de producto</h3>
+          <p class="muted">19312517</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- NEW FARFETCH STYLE SIZE MODAL -->
+<div class="size-modal" id="sizeModal">
+  <div class="size-panel">
+    <div class="size-header">
+      Guía de tallas
+      <span class="close-x" id="closeSizeModal">×</span>
+    </div>
+
+    <div class="size-body">
+      <h2>FEAR OF GOD ESSENTIALS</h2>
+      <div class="size-subtitle">hoodie con paneles y parche del logo</div>
+
+      <table class="size-table">
+        <tr><th>Talla estándar</th><th>Italia/Francia</th><th>RU/EEUU</th></tr>
+        <tr><td>XXXS</td><td>40</td><td>46</td></tr>
+        <tr><td>XXS</td><td>42</td><td>46</td></tr>
+        <tr><td>XS</td><td>44</td><td>46</td></tr>
+        <tr><td>S</td><td>46</td><td>48</td></tr>
+        <tr><td>M</td><td>48</td><td>48</td></tr>
+        <tr><td>L</td><td>50</td><td>50</td></tr>
+        <tr><td>XL</td><td>52</td><td>52</td></tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- mini cart -->
+<div id="cart" class="mini-cart" style="display:none">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <strong>Tu bolsa</strong>
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+  <div id="cartItems"></div>
+  <div style="margin-top:10px;display:flex;gap:8px;justify-content:flex-end">
+    <button class="ghost" id="viewCart">Ver bolsa</button>
+    <button class="btn" id="checkout">Pagar</button>
+  </div>
+</div>
+
+<footer>© 2025 𝑬𝒔𝒔𝒆𝒏𝒕𝒊𝒂𝒍𝒔 𝑿 𝑻𝑱 — Moda responsable</footer>
+
+<script>
+  // gallery behavior
+  const hero = document.getElementById('hero');
+  document.getElementById('thumb1').addEventListener('click', ()=> hero.src = './images2/pag02.jpg');
+  document.getElementById('thumb2').addEventListener('click', ()=> hero.src = './images2/pag2.jpg');
+
+  /* NEW SIZE MODAL JS */
+  const sizeModal = document.getElementById("sizeModal");
+  document.getElementById("sizeGuide").onclick = () => sizeModal.style.display="flex";
+  document.getElementById("closeSizeModal").onclick = () => sizeModal.style.display="none";
+  sizeModal.onclick = (e)=>{ if(e.target===sizeModal) sizeModal.style.display="none"; };
+
+  // simple cart
+  const addBtn = document.getElementById('addBtn');
+  const cartEl = document.getElementById('cart');
+  const cartCount = document.getElementById('cartCount');
+  const cartItemsEl = document.getElementById('cartItems');
+
+  function loadCart(){
+    const raw = localStorage.getItem('cart_v1');
+    return raw ? JSON.parse(raw) : {items:[]};
+  }
+  function saveCart(cart){ localStorage.setItem('cart_v1', JSON.stringify(cart)); }
+
+  function renderCart(){
+    const cart = loadCart();
+    if(cart.items.length===0){ cartEl.style.display='none'; return }
+    cartEl.style.display='block';
+    cartCount.textContent = cart.items.length;
+    cartItemsEl.innerHTML = '';
+    cart.items.forEach((it, idx)=>{
+      const div = document.createElement('div'); div.className='cart-item';
+      div.innerHTML = `<img src="./images2/pag2.jpg" style="width:48px;border-radius:8px;border:1px solid #eee"><div style="flex:1"><div>${it.name}</div><div class=\"muted\">Talla: ${it.size} • $${it.price}</div></div><button data-i=\"${idx}\" class=\"ghost\">Quitar</button>`;
+      cartItemsEl.appendChild(div);
+    });
+    cartItemsEl.querySelectorAll('button').forEach(btn=> btn.addEventListener('click', (e)=>{
+      const i = parseInt(e.currentTarget.dataset.i);
+      const c = loadCart(); c.items.splice(i,1); saveCart(c); renderCart();
+    }));
+  }
+
+  addBtn.addEventListener('click', ()=>{
+    const size = document.getElementById('size').value;
+    const cart = loadCart();
+    cart.items.push({id:19312517,name:'Hoodie 𝑬𝒔𝒔𝒆𝒏𝒕𝒊𝒂𝒍𝒔 𝑿 𝑻𝑱',size:size,price:1899});
+    saveCart(cart);
+    renderCart();
+    addBtn.textContent = 'Añadido ✓';
+    setTimeout(()=> addBtn.textContent='Añadir a la bolsa',900);
+  });
+
+  document.getElementById('viewCart').addEventListener('click', ()=>{ alert('Ir a la página de carrito (aún no implementada).'); });
+  document.getElementById('checkout').addEventListener('click', ()=>{ alert('Pagar — flujo de checkout no conectado.'); });
+
+  renderCart();
+</script>
+ <!-- MINI CARRITO FLOTANTE GLOBAL -->
+<button id="miniCart" class="mini-cart-btn">
+  🛒 <span id="miniCount">0</span>
+</button>
+
+<script src="carrito.js"></script>
+
+<script>
+document.getElementById("addBtn").addEventListener("click", () => {
+  addToCart({
+    id: 5, // Hoodie Gris ID en index1
+    name: "Hoodie Essentials X TJ - Gris",
+    price: 1899,
+    size: document.getElementById("size").value,
+    image: "./images2/pag2.jpg"
+  });
+
+  document.getElementById("addBtn").textContent = "Añadido ✓";
+  setTimeout(()=> document.getElementById("addBtn").textContent = "Añadir a la bolsa", 900);
+});
+</script>
+
+<style>
+.mini-cart-btn{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background:#111;
+  color:#fff;
+  border:none;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:20px;
+  cursor:pointer;
+  z-index:99999;
+  display:none;
+}
+</style>
+
+</body>
+</html>
