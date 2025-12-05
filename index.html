@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>𝑬𝒔𝒔𝒆𝒏𝒕𝒊𝒂𝒍𝒔 𝑿 𝑻𝑱 — Clone (Con carrito)</title>
+
   <style>
     :root{
       --accent:#111;
@@ -11,92 +12,346 @@
       --bg:#fff;
       --card:#f8f8f8;
       --max-width:1200px;
-      --gap:28px;
+      --gap:24px;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--accent)}
-    a{color:inherit;text-decoration:none}
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{
+      background:var(--bg);
+      color:var(--accent);
+      line-height:1.4;
+    }
+
     img{max-width:100%;display:block}
 
-    .wrap{max-width:var(--max-width);margin:0 auto;padding:24px}
-    header.top{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .branding{font-weight:700;letter-spacing:1px;font-size:20px}
-    nav.links{display:flex;gap:16px;align-items:center}
-    nav.links a{font-size:14px;color:var(--muted)}
+    .wrap{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:18px;
+    }
 
-    .title-area{margin:14px 0 20px}
-    .eyebrow{font-size:13px;color:var(--muted);margin-bottom:6px}
-    h1{margin:0;font-size:26px}
-    .desc{margin-top:10px;color:var(--muted);line-height:1.5;max-width:900px}
+    /* =========== HEADER =========== */
+    header.top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 0;
+      flex-wrap:wrap;
+      gap:12px;
+    }
 
-    .controls{display:flex;justify-content:space-between;align-items:center;margin:14px 0;gap:12px}
-    .filters{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{background:#fff;border:1px solid #ddd;padding:8px 12px;border-radius:6px;font-size:14px;cursor:pointer}
-    .sort{font-size:14px;color:var(--muted)}
+    .branding{
+      font-weight:750;
+      letter-spacing:1px;
+      font-size:22px;
+    }
 
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
-    .card{background:transparent;text-align:left;cursor:pointer}
-    .thumb{width:100%;background:#f6f6f6;border-radius:6px;padding:18px;display:flex;align-items:center;justify-content:center;position:relative}
-    .thumb img{max-height:260px;object-fit:contain}
-    .favorite{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,0.06);background:rgba(255,255,255,0.9);cursor:pointer}
-    .meta{margin-top:10px}
-    .brand{font-size:12px;color:var(--muted);text-transform:uppercase}
-    .title{font-weight:600;margin:6px 0}
-    .price{color:var(--muted);font-weight:700}
+    nav.links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
 
-    .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:60}
-    .modal{background:#fff;width:90%;max-width:1100px;border-radius:8px;display:flex;gap:24px;padding:22px;max-height:90vh;overflow:auto}
-    .modal .images{flex:1;display:flex;gap:12px;flex-wrap:wrap}
-    .modal .images img{width:48%;border-radius:6px}
-    .product-info{flex:1}
-    .product-info h2{margin:0 0 6px}
-    .product-info p.meta{color:var(--muted);margin:0 0 12px}
-    .product-info .price{font-size:22px;font-weight:700}
-    .selector, .qty{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin-top:10px}
-    .product-actions{display:flex;gap:10px;margin-top:14px}
-    .primary{background:#111;color:#fff;border:none;padding:12px 16px;border-radius:6px;cursor:pointer}
-    .ghost{background:#fff;border:1px solid #ddd;padding:12px 16px;border-radius:6px;cursor:pointer}
+    nav.links a{
+      font-size:14px;
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:6px;
+      transition:.2s;
+    }
 
-    .cart-btn{position:fixed;right:20px;bottom:20px;background:#111;color:#fff;border:none;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:70}
-    .cart{position:fixed;right:0;top:0;height:100vh;width:360px;background:#fff;border-left:1px solid #eee;transform:translateX(100%);transition:transform .28s;z-index:70;padding:18px;display:flex;flex-direction:column}
+    nav.links a:hover{
+      color:var(--accent);
+      background:#f1f1f1;
+    }
+
+    /* =========== TITULO =========== */
+    .title-area{
+      margin:16px 0 18px;
+    }
+
+    .eyebrow{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    h1{
+      font-size:26px;
+      margin-bottom:6px;
+    }
+
+    .desc{
+      max-width:700px;
+      color:var(--muted);
+      margin-top:4px;
+    }
+
+    /* =========== CONTROLS =========== */
+    .controls{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:18px 0;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .btn{
+      background:#fff;
+      border:1px solid #ddd;
+      padding:8px 12px;
+      border-radius:6px;
+      font-size:14px;
+      cursor:pointer;
+    }
+
+    select{
+      padding:6px;
+      border-radius:6px;
+      border:1px solid #ddd;
+    }
+
+    /* =========== GRID =========== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(170px,1fr));
+      gap:var(--gap);
+    }
+
+    .card{
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .card:hover{
+      transform:translateY(-3px);
+    }
+
+    .thumb{
+      background:#f6f6f6;
+      padding:18px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .thumb img{
+      max-height:240px;
+      object-fit:contain;
+    }
+
+    .favorite{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      background:rgba(255,255,255,.9);
+      border:1px solid #ddd;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+    }
+
+    .meta{
+      margin-top:10px;
+    }
+
+    .brand{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+    }
+
+    .title{
+      font-size:14px;
+      font-weight:600;
+      margin:4px 0 2px;
+    }
+
+    .price{
+      color:var(--accent);
+      font-weight:700;
+      font-size:15px;
+    }
+
+    /* =========== MODAL =========== */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:60;
+    }
+
+    .modal{
+      background:#fff;
+      width:100%;
+      max-width:950px;
+      border-radius:12px;
+      padding:20px;
+      display:flex;
+      gap:20px;
+      max-height:90vh;
+      overflow:auto;
+      flex-wrap:wrap;
+    }
+
+    .modal .images{
+      flex:1;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .modal .images img{
+      width:48%;
+      border-radius:8px;
+    }
+
+    .product-info{
+      flex:1;
+      min-width:260px;
+    }
+
+    .product-info h2{
+      margin-bottom:6px;
+      font-size:20px;
+    }
+
+    .product-info .meta{
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .product-info .price{
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .selector,.qty{
+      width:100%;
+      padding:10px;
+      border:1px solid #ddd;
+      border-radius:6px;
+      margin-top:10px;
+    }
+
+    .product-actions{
+      display:flex;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .primary{
+      background:#111;
+      color:#fff;
+      border:none;
+      padding:12px 16px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    .ghost{
+      background:#fff;
+      border:1px solid #ddd;
+      padding:12px 16px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    /* =========== CARRITO =========== */
+    .cart-btn{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      background:#111;
+      color:#fff;
+      border:none;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:70;
+      box-shadow:0 4px 8px rgba(0,0,0,.2);
+    }
+
+    .cart{
+      position:fixed;
+      right:0;
+      top:0;
+      height:100vh;
+      width:360px;
+      background:#fff;
+      border-left:1px solid #eee;
+      transform:translateX(100%);
+      transition:transform .28s;
+      z-index:70;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+    }
+
     .cart.open{transform:translateX(0)}
-    .cart h3{margin:0 0 12px}
-    .cart-list{flex:1;overflow:auto}
-    .cart-item{display:flex;gap:10px;align-items:center;border-bottom:1px solid #f1f1f1;padding:10px 0}
-    .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px;background:#f5f5f5}
-    .cart-item .info{flex:1}
-    .cart-item .info .name{font-weight:600}
-    .cart-item .actions{display:flex;gap:6px;align-items:center}
-    .total{font-weight:700;margin-top:12px}
-    #paypal-button-container{margin-top:12px}
 
-    footer{height:40px}
+    .cart-list{
+      flex:1;
+      overflow:auto;
+      margin-top:12px;
+    }
 
-    @media (max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
-    @media (max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.modal{flex-direction:column}.modal .images img{width:100%} }
-    @media (max-width:480px){.grid{grid-template-columns:1fr}.controls{flex-direction:column;align-items:stretch}}
+    footer{
+      height:40px;
+    }
+
+    /* =========== MOBILE =========== */
+    @media (max-width:540px){
+      .branding{font-size:18px}
+      nav.links{justify-content:center}
+      .thumb img{max-height:180px}
+      h1{font-size:22px}
+      .modal{flex-direction:column}
+      .modal .images img{width:100%}
+    }
   </style>
 </head>
+
 <body>
 
 <header class="top wrap">
   <div class="branding">𝑬𝒔𝒔𝒆𝒏𝒕𝒊𝒂𝒍𝒔 𝑿 𝑻𝑱</div>
   <nav class="links">
-    <a href="#">Moda para mujer</a>
-    <a href="#">Moda para hombre</a>
+    <a href="#">Moda mujer</a>
+    <a href="#">Moda hombre</a>
     <a href="#">Rebajas</a>
-    <a href="#">Encuentra estilos</a>
+    <a href="#">Estilos</a>
   </nav>
 </header>
 
 <main class="wrap">
+
   <div class="title-area">
-    <div class="eyebrow">Home De Hombre &gt; Essentials X TJ</div>
+    <div class="eyebrow">Home De Hombre > Essentials X TJ</div>
     <h1>Essentials X TJ para hombre</h1>
-    <p class="desc">
-      Los mejores básicos de vestuario están pensados para durar toda la vida y Essentials X TJ lo sabe.
-    </p>
+    <p class="desc">Los mejores básicos de vestuario están pensados para durar toda la vida.</p>
   </div>
 
   <div class="controls">
@@ -104,7 +359,7 @@
       <button class="btn">Filtros</button>
       <button class="btn">Ropa</button>
       <button class="btn">Accesorios</button>
-      <button class="btn">Ropa interior y calcetines</button>
+      <button class="btn">Ropa interior</button>
       <button class="btn">Activewear</button>
     </div>
 
@@ -120,32 +375,37 @@
   </div>
 
   <section class="grid" id="grid"></section>
+
 </main>
 
 <!-- MODAL -->
 <div class="overlay" id="overlay">
-  <div class="modal" role="dialog" aria-modal="true">
+  <div class="modal">
     <div class="images" id="modal-images"></div>
+
     <div class="product-info">
       <h2 id="modal-title"></h2>
       <p class="meta" id="modal-sub"></p>
       <div class="price" id="modal-price"></div>
 
-      <label for="size">Seleccionar talla</label>
+      <label>Seleccionar talla</label>
       <select id="modal-size" class="selector"></select>
 
-      <label for="qty">Cantidad</label>
-      <input id="modal-qty" type="number" class="qty" value="1" min="1">
+      <label>Cantidad</label>
+      <input id="modal-qty" type="number" class="qty" min="1" value="1">
 
       <div class="product-actions">
-        <button class="primary" id="addCart">Añadir a la bolsa</button>
+        <button class="primary" id="addCart">Añadir</button>
         <button class="ghost" id="closeModal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-<button class="cart-btn" id="btnCart" title="Ver bolsa">🛒</button>
+<!-- BOTÓN CARRITO -->
+<button class="cart-btn" id="btnCart">🛒</button>
+
+<!-- PANEL CARRITO -->
 <aside class="cart" id="cart">
   <div style="display:flex;justify-content:space-between;align-items:center">
     <h3>Mi bolsa</h3>
@@ -154,13 +414,12 @@
 
   <div class="cart-list" id="cartList"></div>
   <div class="total" id="totalLine">Total: $0</div>
-  <div id="paypal-button-container"></div>
 </aside>
 
-<footer class="wrap" style="padding-top:12px"></footer>
+<footer class="wrap"></footer>
 
+<!-- PRODUCT LIST + JS -->
 <script>
-/* =============== PRODUCTOS =============== */
 const products = [
   {id:1,title:'Hoodie negro',sub:'Essentials X TJ',price:4559,images:['img/product2_1.jpg','img/product4_1.jpg'],sizes:['S','M','L','XL']},
   {id:2,title:'Hoodie negro',sub:'Essentials X TJ',price:1899,images:['img/product1_1.jpg'],sizes:['S','M','L','XL']},
@@ -182,84 +441,80 @@ const modalSize = document.getElementById('modal-size');
 const modalQty = document.getElementById('modal-qty');
 const addCart = document.getElementById('addCart');
 const closeModal = document.getElementById('closeModal');
-const btnCart = document.getElementById('btnCart');
-const cartEl = document.getElementById('cart');
-const cartList = document.getElementById('cartList');
-const totalLine = document.getElementById('totalLine');
-const closeCart = document.getElementById('closeCart');
 const sortSelect = document.getElementById('sortSelect');
 
-/* =============== GRID =============== */
 function renderGrid(){
-  let prds = [...products];
-  const sortVal = sortSelect.value;
-  if(sortVal === 'Precio: bajo a alto'){ prds.sort((a,b)=>a.price-b.price); }
-  else if(sortVal === 'Precio: alto a bajo'){ prds.sort((a,b)=>b.price-a.price); }
-  grid.innerHTML = '';
+  let prds=[...products];
+  const sortVal=sortSelect.value;
 
+  if(sortVal==='Precio: bajo a alto') prds.sort((a,b)=>a.price-b.price);
+  else if(sortVal==='Precio: alto a bajo') prds.sort((a,b)=>b.price-a.price);
+
+  grid.innerHTML='';
   prds.forEach(p=>{
-    const a = document.createElement('article'); a.className='card';
-    a.innerHTML = `
+    const a=document.createElement('article');
+    a.className='card';
+    a.innerHTML=`
       <div class="thumb" data-id="${p.id}">
-        <img src="${p.images[0]}" alt="${p.title}">
+        <img src="${p.images[0]}">
         <button class="favorite">♡</button>
       </div>
       <div class="meta">
         <div class="brand">${p.sub}</div>
         <div class="title">${p.title}</div>
         <div class="price">$${p.price.toLocaleString()}</div>
-      </div>`;
+      </div>
+    `;
     a.querySelector('.thumb').addEventListener('click',()=>openModal(p.id));
     grid.appendChild(a);
   });
 }
 
-/* =============== MODAL / REDIRECCIÓN =============== */
-let currentProduct = null;
+let currentProduct=null;
 
 function openModal(id){
-  if(id === 5){window.location.href="pagina2.html"; return;}
-  if(id === 2){window.location.href="pagina3.html"; return;}
-  if(id === 7){window.location.href="pagina4.html"; return;}
-  if(id === 3){window.location.href="pagina5.html"; return;}
+  if(id===5) return location.href="pagina2.html";
+  if(id===2) return location.href="pagina3.html";
+  if(id===7) return location.href="pagina4.html";
+  if(id===3) return location.href="pagina5.html";
 
-  const p = products.find(x => x.id === id); 
-  if(!p) return;
+  const p=products.find(x=>x.id===id);
+  currentProduct=p;
 
-  currentProduct = p;
-  modalImages.innerHTML = p.images.map(i => `<img src="${i}">`).join('');
-  modalTitle.textContent = p.title;
-  modalSub.textContent = p.sub;
-  modalPrice.textContent = `$${p.price.toLocaleString()}`;
-  modalSize.innerHTML = p.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
-  modalQty.value = 1;
+  modalImages.innerHTML=p.images.map(i=>`<img src="${i}">`).join('');
+  modalTitle.textContent=p.title;
+  modalSub.textContent=p.sub;
+  modalPrice.textContent=`$${p.price.toLocaleString()}`;
+  modalSize.innerHTML=p.sizes.map(s=>`<option>${s}</option>`).join('');
+  modalQty.value=1;
 
-  overlay.style.display = 'flex';
+  overlay.style.display='flex';
 }
 
-closeModal.addEventListener('click',()=>overlay.style.display='none');
-overlay.addEventListener('click',(e)=>{ if(e.target===overlay) overlay.style.display='none' });
+closeModal.onclick=()=>overlay.style.display='none';
+overlay.onclick=e=>e.target===overlay&&(overlay.style.display='none');
 
-sortSelect.addEventListener('change',()=>{ renderGrid(); });
+sortSelect.onchange=renderGrid;
 renderGrid();
 </script>
 
-<!-- MINI CARRITO GLOBAL -->
-<button id="miniCart" class="cart-btn" style="bottom:90px;">
-  🛒 <span id="miniCount">0</span>
-</button>
+<!-- MINI CARRITO -->
+<button id="miniCart" class="cart-btn" style="bottom:90px;">🛒 <span id="miniCount">0</span></button>
 
 <script src="carrito.js"></script>
 
 <script>
-addCart.addEventListener("click", () => {
+addCart.onclick=()=>{
   if(!currentProduct) return;
   addToCart({
-    id: currentProduct.id,
-    name: currentProduct.title,
-    price: currentProduct.price,
-    size: modalSize.value,
-    image: currentProduct.images[0]
+    id:currentProduct.id,
+    name:currentProduct.title,
+    price:currentProduct.price,
+    size:modalSize.value,
+    image:currentProduct.images[0]
   });
-});
+};
 </script>
+
+</body>
+</html>
